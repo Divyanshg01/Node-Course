@@ -36,9 +36,13 @@ UserSchemma.methods.createJWT = function () {
     { userID: this._id, name: this.name },
     process.env.JWT_SECRET,
     {
-      expiresIn: '30d',
+      expiresIn: process.env.JWT_LIFE,
     }
   );
 };
 
+UserSchemma.methods.comparePassword = async function (candidatePassword) {
+  const isMatch = await bcrypt.compare(candidatePassword, this.password);
+  return isMatch;
+};
 module.exports = mongoose.model("User", UserSchemma);
