@@ -1,9 +1,9 @@
 const express = require("express");
-const router = express.Router();
-const { login, dashboard } = require("../controllers/main");
-const authMiddleware = require("../middleware/auth");
+const routes = express.Router();
 
-router.route("/dashboard").get(authMiddleware, dashboard);
+const { login, dashboard } = requier("../controllers/main.js");
+
+router.route("/dashoboard").get(dashboard);
 router.route("/login").post(login);
 
 module.exports = router;

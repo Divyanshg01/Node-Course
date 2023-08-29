@@ -3,7 +3,7 @@ require("express-async-errors");
 
 const express = require("express");
 const app = express();
-
+const fileUpload = require("express-fileupload");
 // database
 const connectDB = require("./db/connect");
 
@@ -22,6 +22,7 @@ app.use("/api/v1/products", productRoutes);
 // middleware
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
+app.use(fileUpload);
 
 const port = process.env.PORT || 3000;
 
